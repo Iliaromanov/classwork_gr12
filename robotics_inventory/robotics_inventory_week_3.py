@@ -83,3 +83,16 @@ class InventoryManager():
         self.bins = Bin.all_bins
         self.logs = Log.all_logs
         self.users = User.all_users
+
+    def find_bin_by_location(self, location: str) -> Bin:
+        for bin in self.bins:
+            if bin.location == location:
+                return bin
+
+    def find_user_by_student_num(self, num: int) -> Student:
+        for user in sel.users:
+            if user.student_num == num:
+                return user
+
+    def add_part(self, name, quantity, bin_location) -> None
+        pass
