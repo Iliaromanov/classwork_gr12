@@ -12,7 +12,8 @@ class BaseRecord:
 class Bin(BaseRecord):
     all_bins = []
 
-    def __init__(self, id: int, location: str, part_id: str, qty_in_bin: int):
+    def __init__(self, location: str, part_id: str, qty_in_bin: int):
+        id = len(all_bins)
         super().__init__(id)
         self.location = location
         self.part_id = part_id
@@ -32,7 +33,8 @@ class Bin(BaseRecord):
 class Part(BaseRecord):
     all_parts = []
 
-    def __init__(self, name: str, id: int, quantity: int, bin_id: int):
+    def __init__(self, name: str, quantity: int, bin_id: int):
+        id = len(all_parts)
         super().__init__(id)
         self.name = name
         self._quantity = quantity
@@ -94,5 +96,6 @@ class InventoryManager():
             if user.student_num == num:
                 return user
 
-    def add_part(self, name, quantity, bin_location) -> None
-        pass
+    def add_part(self, name, quantity, bin_location) -> None:
+        bin_id = find_bin_by_location(bin_location).id
+        Part(name, quantity, bin_id)
