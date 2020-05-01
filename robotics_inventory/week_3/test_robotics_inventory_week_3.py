@@ -9,7 +9,6 @@ def test_find_bin_by_location():
     assert me.find_bin_by_location("here") == a
     assert me.find_bin_by_location("there") == b
 
-
 def test_find_user_by_student_num():
     me = InventoryManager()
     bill = User("bill.nye20@ycdsbk12.ca", 123456789)
