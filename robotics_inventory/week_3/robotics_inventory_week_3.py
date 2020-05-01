@@ -1,4 +1,4 @@
-
+import os
 import datetime
 
 
@@ -13,7 +13,7 @@ class Bin(BaseRecord):
     all_bins = []
 
     def __init__(self, location: str, part_id: str, qty_in_bin: int):
-        id = len(all_bins)
+        id = len(Bin.all_bins)
         super().__init__(id)
         self.location = location
         self.part_id = part_id
@@ -34,7 +34,7 @@ class Part(BaseRecord):
     all_parts = []
 
     def __init__(self, name: str, quantity: int, bin_id: int):
-        id = len(all_parts)
+        id = len(Part.all_parts)
         super().__init__(id)
         self.name = name
         self._quantity = quantity
@@ -63,7 +63,7 @@ class User:
 class Log(BaseRecord):
     all_logs = []
 
-    def __init__(self, user_id: int, part_id: int, quantity:int):
+    def __init__(self, user_id: int, part_id: int, quantity: int):
         self.user_id = user_id
         self.part_id = part_id
         self._quantity = quantity
@@ -79,7 +79,7 @@ class Log(BaseRecord):
         self.updated_at = datetime.datetime.now()
 
 
-class InventoryManager():
+class InventoryManager:
     def __init__(self):
         self.parts = Part.all_parts
         self.bins = Bin.all_bins
@@ -91,11 +91,17 @@ class InventoryManager():
             if bin.location == location:
                 return bin
 
-    def find_user_by_student_num(self, num: int) -> Student:
-        for user in sel.users:
+    def find_user_by_student_num(self, num: int) -> User:
+        for user in self.users:
             if user.student_num == num:
                 return user
 
     def add_part(self, name, quantity, bin_location) -> None:
-        bin_id = find_bin_by_location(bin_location).id
+        bin_id = self.find_bin_by_location(bin_location).id
         Part(name, quantity, bin_id)
+
+
+if __name__ == "__main__":
+    os.system("pytest")
+    os.system("mypy main.py --disallow-untyped-defs")
+    os.system("pycodestyle main.py --ignore=E501,W")
