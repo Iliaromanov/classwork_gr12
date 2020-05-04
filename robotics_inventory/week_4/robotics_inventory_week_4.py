@@ -120,7 +120,7 @@ class InventoryManager:
         user_id = user.student_num
         part_id = part.id
 
-        Log(user_id, part_id, quantity)
+        Log(user_id, part_id, -1 * quantity)
 
     def return_part(self, part: Part, quantity: int, user: User) -> None:
         bin_id = part.bin_id
@@ -130,10 +130,11 @@ class InventoryManager:
         user_id = user.student_num
         part_id = part.id
 
-        Log(user_id, part_id, -1 * quantity)
+        Log(user_id, part_id, quantity)
 
 
 if __name__ == "__main__":
     os.system("pytest")
 #    os.system("mypy main.py --disallow-untyped-defs")
     os.system("pycodestyle main.py --ignore=E501,W")
+
