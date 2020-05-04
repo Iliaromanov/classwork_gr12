@@ -3,7 +3,7 @@ import datetime
 
 
 class BaseRecord:
-    def __inint__(self, id: int):
+    def __init__(self, id: int):
         self.created_at = datetime.datetime.now
         self.updated_at = datetime.datetime.now()
         self.id = id
