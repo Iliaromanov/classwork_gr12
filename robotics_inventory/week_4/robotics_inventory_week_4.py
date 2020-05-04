@@ -99,14 +99,14 @@ class InventoryManager:
 
     def find_part_by_barcode(self, barcode: str) -> Part:
         for part in self.parts:
-            if part.barcode == barcode:
+            if part._barcode == barcode:
                 return part
 
-    def add_part(name, quantity, bin_location) -> None:
+    def add_part(self, name, quantity, bin_location) -> None:
         bin = self.find_bin_by_location(bin_location)
         bin_id = bin.id
         Part(name, quantity, bin_id)
-        bin.qty_in_bin += 1
+        bin.qty_in_bin += quantity
 
     def sign_out(self, part: Part, quantity: int, user: User) -> None:
         bin_id = part.bin_id
@@ -135,3 +135,4 @@ if __name__ == "__main__":
     os.system("pytest")
 #    os.system("mypy main.py --disallow-untyped-defs")
     os.system("pycodestyle main.py --ignore=E501,W")
+
