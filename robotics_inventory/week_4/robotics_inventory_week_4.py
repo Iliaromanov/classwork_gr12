@@ -1,4 +1,3 @@
-
 import os
 import datetime
 
@@ -48,6 +47,7 @@ class Bin(BaseRecord):
         super().__init__(id)
         self._location = location
         self.part_id = part_id
+        self.qty_in_bin = 0
         Bin.all_bins.append(self)
 
     def get_location(self):
@@ -64,6 +64,8 @@ class Log(BaseRecord):
     all_logs = []
 
     def __init__(self, user_id, part_id, quantity):
+        id = len(Log.all_logs)
+        super().__init__(id)
         self.user_id = user_id
         self.part_id = part_id
         self.quantity = quantity
@@ -85,14 +87,48 @@ class InventoryManager:
             if bin.location == location:
                 return bin
 
+    def find_bin_by_id(self, bin_id: int) -> Bin:
+        for bin in self.bins:
+            if bin.id == bin_id:
+                return bin
+
     def find_user_by_student_num(self, num: int) -> User:
         for user in self.users:
             if user.student_num == num:
                 return user
 
+    def find_part_by_barcode(self, barcode: str) -> Part:
+        for part in self.parts:
+            if part.barcode == barcode:
+                return part
+
     def add_part(name, quantity, bin_location) -> None:
-        bin_id = self.find_bin_by_location(bin_location).id
+        bin = self.find_bin_by_location(bin_location)
+        bin_id = bin.id
         Part(name, quantity, bin_id)
+        bin.qty_in_bin += 1
+
+    def sign_out(self, part: Part, quantity: int, user: User) -> None:
+        bin_id = part.bin_id
+        associated_bin = find_bin_by_id(bin_id)
+
+        if associated_bin.qty_in_bin >= quantity:
+            associated_bin.qty_in_bin -= quantity
+
+        user_id = user.student_num
+        part_id = part.id
+
+        Log(user_id, part_id, quantity)
+
+    def return_part(self, part: Part, quantity: int, user: User) -> None:
+        bin_id = part.bin_id
+        associated_bin = find_bin_by_id(bin_id)        
+        associated_bin.qty_in_bin += quantity
+
+        user_id = user.student_num
+        part_id = part.id
+
+        Log(user_id, part_id, -1 * quantity)
 
 
 if __name__ == "__main__":
