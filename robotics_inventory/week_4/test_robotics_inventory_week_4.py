@@ -45,3 +45,20 @@ def test_add_part():
             assert part.bin_id == 0
         elif part.name == "ssd":
             assert part.bin_id == 1
+
+def test_sign_out():
+    me = InventoryManager()
+    user_a = User("user@yandex.ru", 12344)
+    user_b = User("user@gmail.com", 12344)
+    bin_a = Bin("A1", 12345)
+    bin_b = Bin("B1", 41325)
+    part_a = Part("motor", 2, "1j343g", bin_a.id)
+    part_b = Part("sensor", 10, "4h935y", bin_b.id)
+
+    me.sign_out(part_a, 2, user_a)
+    assert bin_a.qty_in_bin == 0
+    assert len(me.logs) == 1
+
+    me.sign_out(part_b, 4, user_b)
+    assert bin_b.qty_in_bin == 6
+    assert len(me.logs) == 2
