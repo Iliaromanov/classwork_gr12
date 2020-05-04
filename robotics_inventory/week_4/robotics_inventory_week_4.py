@@ -84,7 +84,7 @@ class InventoryManager:
 
     def find_bin_by_location(self, location: str) -> Bin:
         for bin in self.bins:
-            if bin.location == location:
+            if bin._location == location:
                 return bin
 
     def find_bin_by_id(self, bin_id: int) -> Bin:
