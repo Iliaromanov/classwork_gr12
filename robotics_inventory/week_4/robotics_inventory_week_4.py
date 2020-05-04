@@ -32,6 +32,10 @@ class Part(BaseRecord):
         self.bin_id = bin_id
         Part.all_parts.append(self)
 
+        for bin in Bin.all_bins:
+            if bin.id == bin_id:
+                bin.qty_in_bin += quantity
+
     def get_barcode(self):
         return self._barcode
 
@@ -112,7 +116,7 @@ class InventoryManager:
 
     def sign_out(self, part: Part, quantity: int, user: User) -> None:
         bin_id = part.bin_id
-        associated_bin = find_bin_by_id(bin_id)
+        associated_bin = self.find_bin_by_id(bin_id)
 
         if associated_bin.qty_in_bin >= quantity:
             associated_bin.qty_in_bin -= quantity
@@ -124,7 +128,7 @@ class InventoryManager:
 
     def return_part(self, part: Part, quantity: int, user: User) -> None:
         bin_id = part.bin_id
-        associated_bin = find_bin_by_id(bin_id)        
+        associated_bin = self.find_bin_by_id(bin_id)        
         associated_bin.qty_in_bin += quantity
 
         user_id = user.student_num
@@ -137,4 +141,3 @@ if __name__ == "__main__":
     os.system("pytest")
 #    os.system("mypy main.py --disallow-untyped-defs")
     os.system("pycodestyle main.py --ignore=E501,W")
-
