@@ -9,10 +9,12 @@ class BaseRecord:
         self.id = id
 
 
-class User:
+class User(BaseRecord):
     all_users = []
 
     def __init__(self, email: str, student_num: int):
+        id = len(User.all_users)
+        super().__init__(id)
         self.email = email
         self.student_num = student_num
         User.all_users.append(self)
@@ -102,10 +104,10 @@ class InventoryManager:
             if part._barcode == barcode:
                 return part
 
-    def add_part(self, name, quantity, bin_location) -> None:
+    def add_part(self, name, quantity, barcode, bin_location) -> None:
         bin = self.find_bin_by_location(bin_location)
         bin_id = bin.id
-        Part(name, quantity, bin_id)
+        Part(name, quantity, barcode, bin_id)
         bin.qty_in_bin += quantity
 
     def sign_out(self, part: Part, quantity: int, user: User) -> None:
@@ -135,4 +137,3 @@ if __name__ == "__main__":
     os.system("pytest")
 #    os.system("mypy main.py --disallow-untyped-defs")
     os.system("pycodestyle main.py --ignore=E501,W")
-
