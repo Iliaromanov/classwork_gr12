@@ -62,3 +62,6 @@ def test_sign_out():
     me.sign_out(part_b, 4, user_b)
     assert bin_b.qty_in_bin == 6
     assert len(me.logs) == 2
+
+def test_return_part():
+    pass
