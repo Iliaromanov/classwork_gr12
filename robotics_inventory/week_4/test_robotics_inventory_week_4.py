@@ -65,10 +65,15 @@ def test_sign_out():
 
 def test_return_part():
     me = InventoryManager()
-    me.bins = []
-    me.logs = []
-    me.parts = []
-    me.users = []
     bin = Bin("C1", 123456)
-    part = Part("wloo cs coop", 10, "peepopoopee", bin.id)
-    user = User("Fronkus@baidu.com", 59487162)    
+    part = Part("wloo cs coop", 10, "kljhee", bin.id)
+    user = User("Fronkus@baidu.com", 59487162)
+
+    me.sign_out(part, 8, user)
+    me.return_part(part, 4, user)
+    assert bin.qty_in_bin == 6
+    assert len(me.logs) == 4
+
+    me.return_part(part, 2, user)
+    assert bin.qty_in_bin == 8
+    assert len(me.logs) == 5
