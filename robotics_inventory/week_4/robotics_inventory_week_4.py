@@ -130,7 +130,7 @@ class InventoryManager:
         bin_id = part.bin_id
         associated_bin = self.find_bin_by_id(bin_id)
 
-        if part.quantity >= quanity:
+        if part.quantity >= quantity:
             associated_bin.qty_in_bin += quantity
 
         user_id = user.student_num
