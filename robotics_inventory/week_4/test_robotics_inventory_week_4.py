@@ -65,3 +65,7 @@ def test_sign_out():
 
 def test_return_part():
     me = InventoryManager()
+    me.bins = []
+    me.logs = []
+    me.parts = []
+    me.users = []
