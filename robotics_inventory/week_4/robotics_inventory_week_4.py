@@ -128,8 +128,10 @@ class InventoryManager:
 
     def return_part(self, part: Part, quantity: int, user: User) -> None:
         bin_id = part.bin_id
-        associated_bin = self.find_bin_by_id(bin_id)        
-        associated_bin.qty_in_bin += quantity
+        associated_bin = self.find_bin_by_id(bin_id)
+
+        if part.quantity >= quanity:
+            associated_bin.qty_in_bin += quantity
 
         user_id = user.student_num
         part_id = part.id
