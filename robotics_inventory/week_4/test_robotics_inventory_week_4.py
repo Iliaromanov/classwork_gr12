@@ -69,4 +69,6 @@ def test_return_part():
     me.logs = []
     me.parts = []
     me.users = []
-    
+    bin = Bin("C1", 123456)
+    part = Part("wloo cs coop", 10, "peepopoopee", bin.id)
+    user = User("Fronkus@baidu.com", 59487162)    
