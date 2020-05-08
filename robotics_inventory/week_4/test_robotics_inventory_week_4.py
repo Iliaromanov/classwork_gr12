@@ -64,4 +64,4 @@ def test_sign_out():
     assert len(me.logs) == 2
 
 def test_return_part():
-    pass
+    me = InventoryManager()
