@@ -63,4 +63,3 @@ if __name__ == "__main__":
     os.system("pytest")
     # os.system("mypy main.py --disallow-untyped-defs")
     # os.system("pycodestyle main.py --ignore=E501,W")
-
