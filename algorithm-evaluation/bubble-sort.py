@@ -30,3 +30,25 @@ def bubble_sort(targets: List[Target]) -> List[Target]:
     return targets
 
 print(bubble_sort(targets))
+
+
+# b) Closest First
+
+enemy_locations = [
+    [0, 3],
+    [0, 2],
+    [0, 4],
+    [0, 1]
+]
+
+def bubble_sort_distance(locations):
+    for i in range(len(locations) - 1):
+        for j in range(len(locations) - 1 - i):
+            a = math.sqrt(locations[j][0]**2 + locations[j][1]**2)
+            b = math.sqrt(locations[j+1][0]**2 + locations[j+1][1]**2)
+
+            if a > b:
+                locations[j], locations[j + 1] = locations[j + 1], locations[j]
+    return locations
+
+print(bubble_sort_distance(enemy_locations))
