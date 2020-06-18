@@ -53,3 +53,20 @@ def fibonacci(n: int) -> int:
         return n
 
     return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+def bunnyEars2(n: int) -> int:
+    """    
+    We have bunnies standing in a line, numbered 1, 2, ... The odd bunnies (1, 3, ..) have the normal 2 ears. The even bunnies (2, 4, ..) have 3 ears, because they each have a raised foot. Recursively return the number of "ears" in the bunny line 1, 2, ... n (without loops or multiplication).
+    bunnyEars2(0) → 0
+    bunnyEars2(1) → 2
+    bunnyEars2(2) → 5
+    """
+
+    if n == 0:
+        return 0
+
+    if n % 2 == 0:
+        return 3 + bunnyEars2(n-1)
+    else:
+        return 2 + bunnyEars2(n-1)
