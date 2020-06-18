@@ -1,5 +1,5 @@
 
-# factorial
+# Bunny Ears
 
 def bunnyEars(n: int) -> int:
     """We have a number of bunnies and each bunny has two big
@@ -16,3 +16,5 @@ def bunnyEars(n: int) -> int:
         return 0
 
     return 2 + bunnyEars(n - 1)
+
+
