@@ -72,7 +72,7 @@ def bunnyEars2(n: int) -> int:
         return 2 + bunnyEars2(n-1)
     
     
-    def triangle(n: int) -> int:
+def triangle(n: int) -> int:
     """"
     We have triangle made of blocks. The topmost row has 1 block, the next row down has 2 blocks, the next row has 3 blocks, and so on. Compute recursively (no loops or multiplication) the total number of blocks in such a triangle with the given number of rows.
     triangle(0) → 0
@@ -122,7 +122,7 @@ def count7(n: int) -> int:
         return count7(n // 10)
 
     
-    def  count8(n: int) -> int:
+def  count8(n: int) -> int:
     """
     Given a non-negative int n, compute recursively (no loops) the count of the occurrences of 8 as a digit, except that an 8 with another 8 immediately to its left counts double, so 8818 yields 4. Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
     count8(8) → 1
@@ -148,7 +148,7 @@ def count7(n: int) -> int:
         return count8(n // 10)
 
     
-  def powerN(b: int, n: int) -> int:
+def powerN(b: int, n: int) -> int:
     """
     Given <b>base</b> and <b>n</b> that are both 1 or more, compute recursively (no loops) the value of base to the n power, so powerN(3, 2) is 9 (3 squared).
     powerN(3, 1) → 3
@@ -182,7 +182,7 @@ def countX(string: str) -> int:
         return countX(string[:len(string) - 1])
 
     
-    def countHi(string: str) -> int:
+def countHi(string: str) -> int:
     """
     Given a string, compute recursively (no loops) the number of times lowercase "hi" appears in the string.
     countHi("xxhixx") → 1
@@ -200,3 +200,23 @@ def countX(string: str) -> int:
         return 1 + countHi(string[:len(string) - 2])
     else:
         return countHi(string[:len(string) - 1])
+
+    
+def changeXY(string: str) -> str:
+    """
+    Given a string, compute recursively (no loops) a new string where all the lowercase 'x' chars have been changed to 'y' chars.
+    changeXY("codex") → "codey"
+    changeXY("xxhixx") → "yyhiyy"
+    changeXY("xhixhix") → "yhiyhiy"
+    """
+
+    if len(string) <= 1:
+        if string == 'x':
+            return 'y'
+        else:
+            return string
+
+    if string[0] == 'x':
+        return 'y' + changeXY(string[1:])
+    else:
+        return string[0] + changeXY(string[1:])
