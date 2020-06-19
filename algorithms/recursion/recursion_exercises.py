@@ -180,3 +180,23 @@ def countX(string: str) -> int:
         return 1 + countX(string[:len(string) - 1])
     else:
         return countX(string[:len(string) - 1])
+
+    
+    def countHi(string: str) -> int:
+    """
+    Given a string, compute recursively (no loops) the number of times lowercase "hi" appears in the string.
+    countHi("xxhixx") → 1
+    countHi("xhixhix") → 2
+    countHi("hi") → 1
+    """
+
+    if len(string) <= 2:
+        if string == 'hi':
+            return 1
+        else:
+            return 0
+
+    if string[-1] == 'i' and string[-2] == 'h':
+        return 1 + countHi(string[:len(string) - 2])
+    else:
+        return countHi(string[:len(string) - 1])
