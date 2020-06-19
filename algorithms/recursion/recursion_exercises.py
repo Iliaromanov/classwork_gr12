@@ -160,3 +160,23 @@ def count7(n: int) -> int:
         return b
 
     return b * powerN(b, n - 1)
+
+
+def countX(string: str) -> int:
+    """
+    Given a string, compute recursively (no loops) the number of lowercase 'x' chars in the string.
+    countX("xxhixx") → 4
+    countX("xhixhix") → 3
+    countX("hi") → 0
+    """
+
+    if len(string) <= 1:
+        if string == 'x':
+            return 1
+        else:
+            return 0
+
+    if string[-1] == 'x':
+        return 1 + countX(string[:len(string) - 1])
+    else:
+        return countX(string[:len(string) - 1])
