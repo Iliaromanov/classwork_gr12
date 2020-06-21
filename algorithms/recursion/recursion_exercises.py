@@ -379,3 +379,20 @@ def countPairs(string: str) -> int:
         return 1 + countPairs(string[1:])
     else:
         return countPairs(string[1:])
+
+    
+def countAbc(string: str) -> int:
+    """
+    Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+    countAbc("abc") → 1
+    countAbc("abcxxabc") → 2
+    countAbc("abaxxaba") → 2
+    """
+
+    if len(string) <= 2:
+        return 0
+
+    if string[0:3] == 'abc' or string[0:3] == 'aba':
+        return 1 + countAbc(string[1:])
+    else:
+        return countAbc(string[1:])
