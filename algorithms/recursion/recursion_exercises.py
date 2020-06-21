@@ -297,3 +297,20 @@ def array11(nums: List[int], index: int) -> int:
         return 1 + array11(nums[1:], index + 1)
     else:
         return array11(nums[1:], index + 1)
+    
+    
+def array220(nums: List[int], index: int) -> bool:
+    """
+    Given an array of ints, compute recursively if the array contains somewhere a value followed in the array by that value times 10. We'll use the convention of considering only the part of the array that begins at the given index. In this way, a recursive call can pass index+1 to move down the array. The initial call will pass in index as 0.
+    array220([1, 2, 20], 0) → true
+    array220([3, 30], 0) → true
+    array220([3], 0) → false            
+    """
+
+    if len(nums) <= 1:
+        return False
+
+    if nums[1] == nums[0] * 10:
+        return True
+    else:
+        return array220(nums[1:], index + 1)
