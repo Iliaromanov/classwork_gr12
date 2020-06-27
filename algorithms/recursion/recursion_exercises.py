@@ -450,3 +450,26 @@ def countHi2(string: str) -> int:
         return 1 + countHi2(string[:len(string) - 1])
     else:
         return countHi2(string[:len(string) - 1])
+    
+    
+def parenBit(string: str) -> str:
+    """
+    Given a string that contains a single pair of parenthesis, compute recursively a new string made of only of the parenthesis and their contents, so "xyz(abc)123" yields "(abc)".
+    parenBit("xyz(abc)123") → "(abc)"
+    parenBit("x(hello)") → "(hello)"
+    parenBit("(xy)1") → "(xy)"
+    """
+
+    if len(string) <= 1:
+        if string == ')':
+            return string
+        else:
+            return ''
+
+    if string[0] == '(':
+        if string[-1] == ')':
+            return string
+        else:
+            return parenBit(string[:len(string) - 1])
+    else:
+        return parenBit(string[1:])
