@@ -473,3 +473,24 @@ def parenBit(string: str) -> str:
             return parenBit(string[:len(string) - 1])
     else:
         return parenBit(string[1:])
+
+    
+def nestParen(string: str) -> bool:
+    """
+    Given a string, return true if it is a nesting of zero or more pairs of parenthesis, like "(())" or "((()))". Suggestion: check the first and last chars, and then recur on what's inside them.
+    nestParen("(())") → true
+    nestParen("((()))") → true
+    nestParen("(((x))") → false
+    """
+
+    if len(string) <= 2:
+        if string == '()' or string == '':
+            return True
+        else:
+            return False
+
+    
+    if string[0] == '(' and string[-1] == ')':
+        return nestParen(string[1:-1])
+    else:
+        return False
