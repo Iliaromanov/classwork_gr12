@@ -494,3 +494,23 @@ def nestParen(string: str) -> bool:
         return nestParen(string[1:-1])
     else:
         return False
+
+
+def strCount(string: str, sub: str) -> int:
+    """
+    Given a string and a non-empty substring <b>sub</b>, compute recursively the number of times that sub appears in the string, without the sub strings overlapping.
+    strCount("catcowcat", "cat") → 2
+    strCount("catcowcat", "cow") → 1
+    strCount("catcowcat", "dog") → 0
+    """
+
+    if len(string) <= len(sub):
+        if string == sub:
+            return 1
+        else:
+            return 0
+
+    if string[:len(sub)] == sub:
+        return 1 + strCount(string[len(sub):], sub)
+    else:
+        return strCount(string[1:], sub)
