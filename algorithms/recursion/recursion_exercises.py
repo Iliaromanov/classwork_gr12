@@ -514,3 +514,22 @@ def strCount(string: str, sub: str) -> int:
         return 1 + strCount(string[len(sub):], sub)
     else:
         return strCount(string[1:], sub)
+
+
+def strCopies(string: str, sub: str, amount: int) -> bool:
+    """
+    Given a string and a non-empty substring <b>sub</b>, compute recursively if at least n copies of sub appear in the string somewhere, possibly with overlapping. N will be non-negative.
+    strCopies("catcowcat", "cat", 2) → true
+    strCopies("catcowcat", "cow", 2) → false
+    strCopies("catcowcat", "cow", 1) → true
+    """
+
+    if len(string) < len(sub) and amount <= 0:
+        return True
+    elif len(string) < len(sub) and amount > 0:
+        return False
+
+    if string[:len(sub)] == sub:
+        return strCopies(string[1:], sub, amount - 1)
+    else:
+        return strCopies(string[1:], sub, amount)
