@@ -533,3 +533,25 @@ def strCopies(string: str, sub: str, amount: int) -> bool:
         return strCopies(string[1:], sub, amount - 1)
     else:
         return strCopies(string[1:], sub, amount)
+    
+    
+def strDist(string: str, sub: str) -> int:
+    """
+    Given a string and a non-empty substring <b>sub</b>, compute recursively the largest substring which starts and ends with sub and return its length.
+    strDist("catcowcat", "cat") → 9
+    strDist("catcowcat", "cow") → 3
+    strDist("cccatcowcatxx", "cat") → 9
+    """
+
+    if len(string) <= len(sub):
+        if string == sub:
+            return len(sub)
+        else:
+            return 0
+
+    if string[:len(sub)] == sub and string[-len(sub):] == sub:
+        return len(string)
+    elif string[:len(sub)] != sub:
+        return strDist(string[1:], sub)
+    elif string[-len(sub):] != sub:
+        return strDist(string[:-1], sub)
